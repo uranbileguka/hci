@@ -3,66 +3,86 @@ import {
   Card,
   CardContent,
   TextField,
-  Button,
   List,
   ListItem,
+  ListItemText,
+  Divider,
+  Typography,
 } from "@mui/material";
 
-const products = [
-  "After Hours",
-  "Beauty Behind the Madness",
-  "Kiss Land",
-  "Starboy",
-  "My Dear Melancholy,",
-  "Trilogy",
-  "House of Balloons",
-  "Thursday",
-  "Echoes of Silence",
-  "Starboy (Deluxe)",
-  "The Highlights",
-  "Heartless",
-  "Blinding Lights",
-  "Save Your Tears",
-  "In Your Eyes",
-  "Scared to Live",
-  "Snowchild",
-  "Escape from LA",
-  "Faith",
-  "Too Late",
-  "Hardest to Love",
-  "Repeat After Me (Interlude)",
-  "After Hours",
-  "Until I Bleed Out",
+const electronicProducts = [
+  "MacBook Pro",
+  "Dell XPS 15",
+  "Lenovo ThinkPad X1 Carbon",
+  "HP Spectre x360",
+  "ASUS ROG Zephyrus G14",
+  "Microsoft Surface Laptop 5",
+  "iPhone 15 Pro",
+  "Samsung Galaxy S24 Ultra",
+  "Google Pixel 8 Pro",
+  "OnePlus 12",
+  "iPad Pro (M2)",
+  "Samsung Galaxy Tab S9",
+  "Sony WH-1000XM5",
+  "Bose QuietComfort Ultra",
+  "Apple AirPods Pro 2",
+  "JBL Flip 6",
+  "Sonos One",
+  "Apple Watch Ultra 2",
+  "Samsung Galaxy Watch 6",
+  "Garmin Fenix 7",
+  "Fitbit Charge 6",
+  "Google Pixel Watch",
+  "Sony Alpha A7 IV",
+  "Canon EOS R5",
+  "DJI Mini 3 Pro",
+  "GoPro Hero 12 Black",
+  "Fujifilm X-T5",
+  "PlayStation 5",
+  "Xbox Series X",
+  "Nintendo Switch OLED",
+  "Logitech G Pro X",
+  "Razer Huntsman Mini",
 ];
 
 function FuzzySearch() {
   const [query, setQuery] = useState("");
-  const results = products.filter((item) =>
+
+  const filteredResults = electronicProducts.filter((item) =>
     item.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
-    <Card>
+    <Card sx={{ maxWidth: 500, margin: "auto", mt: 4, p: 2 }}>
       <CardContent>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          🔍 Search for Electronics
+        </Typography>
         <TextField
-          label="Search for a product"
+          label="Type to search..."
           variant="outlined"
           fullWidth
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          sx={{ mb: 2 }}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ marginTop: "10px" }}
-        >
-          Search
-        </Button>
-        <List>
-          {results.map((result, index) => (
-            <ListItem key={index}>{result}</ListItem>
-          ))}
-        </List>
+
+        {filteredResults.length > 0 ? (
+          <List>
+            {filteredResults.map((result, index) => (
+              <React.Fragment key={index}>
+                <ListItem>
+                  <ListItemText primary={result} />
+                </ListItem>
+                {index < filteredResults.length - 1 && <Divider />}
+              </React.Fragment>
+            ))}
+          </List>
+        ) : (
+          <Typography color="textSecondary" sx={{ mt: 2 }}>
+            No results found.
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );
