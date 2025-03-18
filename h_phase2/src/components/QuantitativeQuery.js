@@ -54,12 +54,15 @@ function QuantitativeQueries() {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 3, padding: 2 }}>
-      <FormControl sx={{ width: 300 }}>
-        <InputLabel>Select a Query</InputLabel>
+      <Typography variant="h6" sx={{ mb: 1 }}>
+        🔍 Choose a Query
+      </Typography>
+      <FormControl variant="filled" sx={{ minWidth: 300, maxWidth: 1000 }}>
+        <InputLabel id="query-label">Select a Query</InputLabel>
         <Select
+          labelId="query-label"
           value={selectedQuery}
           onChange={(e) => setSelectedQuery(e.target.value)}
-          label="Select a Query"
         >
           {Object.keys(rawData).map((query) => (
             <MenuItem key={query} value={query}>
@@ -73,7 +76,7 @@ function QuantitativeQueries() {
       <Card variant="outlined" sx={{ width: "100%" }}>
         <CardContent>
           <Typography component="h2" variant="subtitle2" gutterBottom>
-          {selectedQuery}
+            {selectedQuery}
           </Typography>
           <Stack sx={{ justifyContent: "space-between" }}>
             <Stack
@@ -85,7 +88,7 @@ function QuantitativeQueries() {
               }}
             >
               <Typography variant="h4" component="p">
-                Total {totalSum} 
+                Total {totalSum}
               </Typography>
               {/* <Chip size="small" color="error" label="-8%" /> */}
             </Stack>
