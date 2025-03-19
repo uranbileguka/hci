@@ -55,7 +55,7 @@ function QuantitativeQueries() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 3, padding: 2 }}>
       <Typography variant="h6" sx={{ mb: 1 }}>
-        🔍 Choose a Query
+        Select query
       </Typography>
       <FormControl variant="filled" sx={{ minWidth: 300, maxWidth: 1000 }}>
         <InputLabel id="query-label">Select a Query</InputLabel>
